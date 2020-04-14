@@ -1,0 +1,3 @@
+---
+startDelaySeconds: 0
+blacklistObjectNames: ["Alfresco:Name=CacheStatistics, Object Type=org.alfresco.enterprise.repo.management.CacheStatisticsMBeanImpl,*"]

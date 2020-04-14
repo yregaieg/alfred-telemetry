@@ -6,15 +6,20 @@ services:
     ports:
      - target: 8080
        mode: host
+     - target: 8081
+       mode: host
+       published: 8081
     environment:
-      - CATALINA_OPTS=-Xdebug -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000
+      - "CATALINA_OPTS=-Xdebug -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000 -javaagent:/opt/jmx_prometheus/jmx_prometheus_javaagent-0.12.0.jar=8081:/opt/jmx_prometheus/config.yaml"
+      - GLOBAL_alfresco.jmx.connector.enabled=true
       - INDEX=noindex
       - ENABLE_CLUSTERING=true
       - GLOBAL_alfred.telemetry.alfresco-integration.enabled=true
       # Enable Care4Alf metrics:
       - GLOBAL_alfred.telemetry.binder.care4alf.enabled=true
-      # Enable Alfresco cache metrics:
-      - GLOBAL_alfred.telemetry.binder.cache.enabled=true
+      # Disable Alfresco cache metrics:
+      - GLOBAL_alfred.telemetry.binder.cache.enabled=false
+      - GLOBAL_alfred.telemetry.binder.care4alf.legacy-cache.enabled=false
 
   postgresql:
     image: docker.io/xenit/postgres
