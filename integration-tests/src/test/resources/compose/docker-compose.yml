@@ -14,6 +14,7 @@ services:
       - GLOBAL_alfresco.jmx.connector.enabled=true
       - INDEX=noindex
       - ENABLE_CLUSTERING=true
+      - GLOBAL_metrics.enabled=true
       - GLOBAL_alfred.telemetry.alfresco-integration.enabled=true
       # Enable Care4Alf metrics:
       - GLOBAL_alfred.telemetry.binder.care4alf.enabled=true
